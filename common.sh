@@ -10,3 +10,8 @@ function try {
         exit $status
     fi
 }
+
+function error {
+    echo "[Error]" "$@" >&2
+    exit 1
+}
