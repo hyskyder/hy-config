@@ -33,19 +33,11 @@ case ${opt} in
             echo "NOTE: Cannot access ~/.ssh/config. Ignored." 1>&2
         fi
         ;;
-    l )
-        SERVER_LIST+=("localhost")
+    l ) SERVER_LIST+=("localhost")
         ;;
-    h )
-        usage
-        exit 0
-        ;;    
-    D )
-        set -x
-        ;;
-    : )
-        echo "Invalid option: $OPTARG requires an argument" 1>&2
-        ;;
+    h ) usage; exit 0 ;;    
+    D ) set -x ;;
+    : ) echo "Invalid option: $OPTARG requires an argument" 1>&2 ;;
     \? )
         echo "Invalid Option: -$OPTARG" 1>&2
         usage
