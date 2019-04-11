@@ -59,7 +59,7 @@ if [[ ${#SERVER_LIST[@]} -gt 0 ]] ; then
     tmux kill-pane -t "$SESSION_NAME:$MAINWINDOW_NAME.0"
 
     tmux new-window -d -t $SESSION_NAME -n layout \
-    "echo 'This window maintains layout of the previous one'; while tmux select-layout -t $SESSION_NAME:$MAINWINDOW_NAME tiled; do sleep 1; done"
+    "echo 'This window maintains layout of the previous one'; while tmux select-layout -t $SESSION_NAME:$MAINWINDOW_NAME tiled; do sleep 1.5; done"
     tmux attach -t $SESSION_NAME:$MAINWINDOW_NAME
 else
     usage

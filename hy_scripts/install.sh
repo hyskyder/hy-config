@@ -2,6 +2,7 @@
 
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 . $HERE/../common.sh
+[[ -f ${HERE}/dependency.sh ]] && try ${HERE}/dependency.sh
 
 while getopts ":Dcst:" opt; do
 case ${opt} in
@@ -20,8 +21,6 @@ BIN_DIR=${BIN_DIR:-"${HOME}/bin"}
 [[ ! -d $COPY_DIR ]] && try mkdir -p $COPY_DIR
 [[ ! -d $BIN_DIR  ]] && try mkdir -p $BIN_DIR
 [[ $HERE/scripts != $COPY_DIR ]] && try cp -r $HERE/scripts $COPY_DIR
-
-try $HERE/dependency.sh
 
 find ${COPY_DIR} -mindepth 1 -name '*.sh' -type f -print0 | while read -d '' -r s; do
     n=$(basename $s)
