@@ -15,7 +15,7 @@ else
     try git clone https://github.com/magicmonty/bash-git-prompt.git $LOCAL_REPO_DIR --depth=1
 fi
 
-try cp -v $HERE/Single_line_NoExitState_Gentoo_hy.bgptheme $LOCAL_REPO_DIR/themes/Single_line_NoExitState_Gentoo_hy.bgptheme
+try cp -vui $HERE/Single_line_NoExitState_Gentoo_hy.bgptheme ${LOCAL_REPO_DIR}/themes/Single_line_NoExitState_Gentoo_hy.bgptheme
 
 try test -w ${HOME}/.bashrc 
 IsBashrcReady=$(grep 'bash-git-prompt/gitprompt.sh' ${HOME}/.bashrc | wc -l)

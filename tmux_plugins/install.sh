@@ -19,6 +19,6 @@ else
     try git clone https://github.com/tmux-plugins/tpm ${LOCAL_REPO_DIR} --depth 1
 fi
 
-try cp -uv "${HERE}/tmux.conf" "${HOME}/.tmux.conf"
+try cp -uvi "${HERE}/tmux.conf" "${HOME}/.tmux.conf"
 
 try ${LOCAL_REPO_DIR}/bin/install_plugins
