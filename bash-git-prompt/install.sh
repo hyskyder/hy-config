@@ -6,13 +6,10 @@ HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 LOCAL_REPO_DIR="${HOME}/.config/.bash-git-prompt"
 
-! [[ -d ${HOME}/.config ]] && try mkdir ~/.config
-if [[ -d "$LOCAL_REPO_DIR" ]] ; then
-     cd $LOCAL_REPO_DIR
-     try git pull
-     cd $HERE
+if [[ -d ${LOCAL_REPO_DIR} ]] ; then
+     try git -C ${LOCAL_REPO_DIR} pull
 else
-    try git clone https://github.com/magicmonty/bash-git-prompt.git $LOCAL_REPO_DIR --depth=1
+    try git clone https://github.com/magicmonty/bash-git-prompt.git ${LOCAL_REPO_DIR} --depth=1
 fi
 
 try cp -vui $HERE/Single_line_NoExitState_Gentoo_hy.bgptheme ${LOCAL_REPO_DIR}/themes/Single_line_NoExitState_Gentoo_hy.bgptheme
