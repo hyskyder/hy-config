@@ -28,10 +28,10 @@ find ${COPY_DIR} -mindepth 1 -name '*.sh' -type f -print0 | while read -d '' -r 
 
     #[[ -f ${BIN_DIR}/${n} ]] && error "${BIN_DIR}/${n} is a regular file, stop creating symlink on it."
     if [[ -L ${BIN_DIR}/${n} ]] ; then
-        echo "[NOTE] ${BIN_DIR}/${n} exists. Force making symlink."
+        echo "[NOTE] ${BIN_DIR}/${n} exists. Force replacing symlink."
         try ln -sf ${s} ${BIN_DIR}/${n} 
     elif [[ ! -e ${BIN_DIR}/${n} ]] ; then
-        echo "Making symlink: ${BIN_DIR}/${n}"
+        echo "[LINK] Making symlink: ${BIN_DIR}/${n}"
         try ln -s ${s} ${BIN_DIR}/${n}
     else
         error "Abnormal target location ${BIN_DIR}/${n}. Please check."
