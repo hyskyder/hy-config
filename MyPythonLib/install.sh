@@ -10,4 +10,5 @@ else
 fi
 
 cd $HERE/myPythonLib;
-try python3 setup.py install --user
+try python3 setup.py --quiet install --user
+echo "[INFO] myPythonLib installed."
