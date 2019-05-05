@@ -5,19 +5,21 @@ HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 function usage {
     cat << EndOfUsageMsg 
-$0 : Intall my_init
+$0 : Intall my_sys_conf
 
-Usage: $0 [Option] [folders_list] ...
-  Option: 
+Usage: $0 [Option] [folders_list ... ]
+  Option:
     -a  Install all folders here.
+    -p  Update my_sys_conf first. (git pull)
     -D  Debug flag.
     -h  This help msg.
 EndOfUsageMsg
 }
 
-while getopts ":aDh" opt; do
+while getopts ":apDh" opt; do
 case ${opt} in
     a ) TARGET_ALL=true ;;
+    p ) try git pull ;;
     D ) DEBUG_FLAG="-D" ; set -x ;;
     h ) usage ;;
     : ) echo "Invalid option: $OPTARG requires an argument" 1>&2 ; exit 1 ;;
