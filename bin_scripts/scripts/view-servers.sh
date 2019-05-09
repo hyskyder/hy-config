@@ -12,10 +12,11 @@ Usage: $0 [Option] ServerList ...
 EndOfUsageMsg
 }
 
-SESSION_NAME=ViewServers
-MAINWINDOW_NAME=View
-
 MONITOR_TOOL=htop
+
+SESSION_NAME=ViewServers
+MAINWINDOW_NAME="V-$MONITOR_TOOL"
+
 SERVER_LIST=()
 
 while getopts ":aDlh" opt; do
@@ -60,7 +61,12 @@ if [[ ${#SERVER_LIST[@]} -gt 0 ]] ; then
 
     tmux new-window -d -t $SESSION_NAME -n layout \
     "echo 'This window maintains layout of the previous one'; while tmux select-layout -t $SESSION_NAME:$MAINWINDOW_NAME tiled; do sleep 1.5; done"
-    tmux attach -t $SESSION_NAME:$MAINWINDOW_NAME
+    
+    if [[ -z "$TMUX" ]]; then
+        tmux attach -t $SESSION_NAME:$MAINWINDOW_NAME
+    else
+        tmux link-window -s $SESSION_NAME:$MAINWINDOW_NAME
+    fi
 else
     usage
 fi
