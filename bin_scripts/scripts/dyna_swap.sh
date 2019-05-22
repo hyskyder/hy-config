@@ -33,15 +33,16 @@ case ${opt} in
 esac done
 shift $((OPTIND -1))
 
-
-Detect_Mount=$(swapon --show=name | grep ${SWAP_FILE} | wc -l)
+[[ $# -gt 0 ]] && usage && error "Positional arguments \"$*\" unsupported."
 
 if [[ $MODE == "mount" ]]; then
+    Detect_Mount=$(swapon --show=name | grep ${SWAP_FILE} | wc -l)
     [[ $Detect_Mount -ne 0 ]] && error "${SWAP_FILE} already mounted. Abort."
-    sudo fallocate -l ${ALLOC_SIZE} ${SWAP_FILE}
-    sudo chmod 600 ${SWAP_FILE}
-    sudo mkswap ${SWAP_FILE}
-    sudo swapon ${SWAP_FILE}
+    try sudo fallocate -l ${ALLOC_SIZE} ${SWAP_FILE}
+    try sudo chmod 600 ${SWAP_FILE}
+    try sudo mkswap ${SWAP_FILE}
+    try sudo swapon ${SWAP_FILE}
 else
-    sudo swapoff -v ${SWAP_FILE}
+    try sudo swapoff -v ${SWAP_FILE}
+    # sudo rm -i ${SWAP_FILE}
 fi
