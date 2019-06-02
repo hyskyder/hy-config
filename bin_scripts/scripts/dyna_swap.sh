@@ -1,7 +1,7 @@
-
+#!/bin/bash
 
 ABS_SCRIPT_PATH="$(dirname "$(readlink --canonicalize "${BASH_SOURCE[0]}")" )"
-. ${ABS_SCRIPT_PATH}/../../common.sh
+. "${ABS_SCRIPT_PATH}/../../common.sh"
 
 SWAP_FILE="/dynamic_swapfile"
 ALLOC_SIZE="8G"
@@ -36,13 +36,13 @@ shift $((OPTIND -1))
 [[ $# -gt 0 ]] && usage && error "Positional arguments \"$*\" unsupported."
 
 if [[ $MODE == "mount" ]]; then
-    Detect_Mount=$(swapon --show=name | grep ${SWAP_FILE} | wc -l)
+    Detect_Mount=$(swapon --show=name | grep -c "${SWAP_FILE}" )
     [[ $Detect_Mount -ne 0 ]] && error "${SWAP_FILE} already mounted. Abort."
-    try sudo fallocate -l ${ALLOC_SIZE} ${SWAP_FILE}
-    try sudo chmod 600 ${SWAP_FILE}
-    try sudo mkswap ${SWAP_FILE}
-    try sudo swapon ${SWAP_FILE}
+    try sudo fallocate -l "${ALLOC_SIZE}" "${SWAP_FILE}"
+    try sudo chmod 600 "${SWAP_FILE}"
+    try sudo mkswap "${SWAP_FILE}"
+    try sudo swapon "${SWAP_FILE}"
 else
-    try sudo swapoff -v ${SWAP_FILE}
-    # sudo rm -i ${SWAP_FILE}
+    try sudo swapoff -v "${SWAP_FILE}"
+    # sudo rm -i "${SWAP_FILE}"
 fi

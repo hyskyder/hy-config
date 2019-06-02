@@ -26,7 +26,7 @@ case ${opt} in
     #   ;;
     a )
         if [[ -r ~/.ssh/config ]]; then
-            HOSTS_IN_CONFIG=( ` grep -i "^[\t ]*Host " ~/.ssh/config | awk '{print $2}' ` )
+            HOSTS_IN_CONFIG=$( grep -i "^[\t ]*Host " ~/.ssh/config | awk '{print $2}' )
             [[ ${#HOSTS_IN_CONFIG[@]} -eq 0 ]] && 
                 echo "NOTE: " 1>&2
             SERVER_LIST+=("${HOSTS_IN_CONFIG[@]}")

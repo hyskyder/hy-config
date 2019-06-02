@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ABS_SCRIPT_PATH="$(dirname "$(readlink --canonicalize "${BASH_SOURCE[0]}")" )"
-. ${ABS_SCRIPT_PATH}/../../common.sh
+. "${ABS_SCRIPT_PATH}/../../common.sh"
 
 SHM_FILE="/dev/shm"
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-. $HERE/../common.sh
+. "${HERE}/../common.sh"
 
 
 try sudo apt-get install \

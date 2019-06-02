@@ -1,7 +1,7 @@
 #!/bin/bash
 
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-. $HERE/common.sh
+. "${HERE}/common.sh"
 
 function usage {
     cat << EndOfUsageMsg 
@@ -31,17 +31,17 @@ TARGET_ALL=${TARGET_ALL:-false}
 DEBUG_FLAG=${DEBUG_FLAG:-""}
 
 if ${TARGET_ALL}; then
-    find $HERE -mindepth 1 -maxdepth 1 -type d -print0 | while read -d '' -r d; do
+    find "${HERE}" -mindepth 1 -maxdepth 1 -type d -print0 | while read -d '' -r d; do
         if [[ -r ${d}/install.sh ]]; then
             echo "[INFO] Found ${d}/install.sh, installing:"
-            try bash ${d}/install.sh ${DEBUG_FLAG}
+            try bash "${d}/install.sh" ${DEBUG_FLAG}
         fi
     done
 elif [[ $# -gt 0 ]]; then
     for d in "$@" ; do
         if [[ -r ${d}/install.sh ]]; then
             echo "[INFO] Found ${d}/install.sh, installing:"
-            try bash ${d}/install.sh ${DEBUG_FLAG}
+            try bash "${d}/install.sh" ${DEBUG_FLAG}
         fi
     done
 else

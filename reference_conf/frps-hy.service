@@ -6,7 +6,7 @@ AssertFileIsExecutable=%h/programs/frp_linux_amd64/frps
 [Service]
 Type=simple
 WorkingDirectory=%h/programs/frp_linux_amd64
-ExecStart=/home/wenjian/programs/frp_linux_amd64/frps -c frps.ini
+ExecStart=/usr/bin/env ./frps -c frps.ini
 #ExecStop=/bin/kill -s QUIT ${MAINPID}
 Restart=always
 SyslogFacility=local0

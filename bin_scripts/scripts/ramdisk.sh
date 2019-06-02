@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ABS_SCRIPT_PATH="$(dirname "$(readlink --canonicalize "${BASH_SOURCE[0]}")" )"
-. ${ABS_SCRIPT_PATH}/../../common.sh
+. "${ABS_SCRIPT_PATH}/../../common.sh"
 
 TMPFS_FILE="/mnt/ramdisk"
 TMPFS_SIZE="2G"
@@ -21,7 +21,7 @@ Usage: $0 [Option]
 EndOfUsageMsg
 }
 
-while getopts ":f:Dh" opt; do
+while getopts ":f:s:rDh" opt; do
 case ${opt} in
     f ) TMPFS_FILE=$OPTARG ;;
     s ) TMPFS_SIZE=$OPTARG ;;
@@ -35,11 +35,11 @@ shift $((OPTIND -1))
 [[ $# -gt 0 ]] && usage && error "Positional arguments \"$*\" unsupported."
 
 if [[ $MODE == "mount" ]]; then
-    Detect_Mount=$(df ${TMPFS_FILE} | grep ${TMPFS_FILE} | wc -l)
+    Detect_Mount=$(df "${TMPFS_FILE}" | grep -c "${TMPFS_FILE}" )
     [[ $Detect_Mount -ne 0 ]] && error "${TMPFS_FILE} already mounted. Abort."
-    try sudo mount -t tmpfs -o size=${TMPFS_SIZE} tmpfs ${TMPFS_FILE}
-    df -h ${TMPFS_FILE}
+    try sudo mount -t tmpfs -o "size=${TMPFS_SIZE}" tmpfs "${TMPFS_FILE}"
+    df -h "${TMPFS_FILE}"
 else
-    try sudo umount ${TMPFS_FILE}
+    try sudo umount "${TMPFS_FILE}"
 fi
 
