@@ -22,9 +22,10 @@ BIN_DIR=${BIN_DIR:-"${HOME}/bin"}
 [[ ! -d $BIN_DIR  ]] && try mkdir -p "${BIN_DIR}"
 [[ $HERE/scripts != "$COPY_DIR" ]] && try cp -r "${HERE}/scripts" "${COPY_DIR}"
 
-find "${COPY_DIR}" -mindepth 1 -name '*.sh' -type f -print0 | while read -d '' -r s; do
+find "${COPY_DIR}" -mindepth 1 -name '*.sh' -or -name '*.py' -type f -print0 | while read -d '' -r s; do
     n=$(basename "$s")
     n=${n/%.sh}
+    n=${n/%.py}
 
     #[[ -f ${BIN_DIR}/${n} ]] && error "${BIN_DIR}/${n} is a regular file, stop creating symlink on it."
     if [[ -L ${BIN_DIR}/${n} ]] ; then
