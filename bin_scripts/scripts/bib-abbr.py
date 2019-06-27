@@ -6,7 +6,7 @@ from functools import partial
 
 process_bib=partial(simple_process_bib,
     exclude=["abstract","file","keywords"],
-    commentify=["booktitle","publisher","month","url","urldate","address","series"]
+    commentify=["booktitle","publisher","month","url","urldate","address","series","note"]
 )
 
 def parse_args():
