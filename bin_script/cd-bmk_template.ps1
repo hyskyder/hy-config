@@ -6,7 +6,8 @@ Param(
 )
 
 $hash = @{ 
-    proj = "C:\project\"; 
+    proj = "C:\project\";
+    onedrive=$env:OneDrive;
     THIS_IS_LAST_ELEMENT = ".";
 }
 
