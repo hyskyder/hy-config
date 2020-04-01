@@ -1,0 +1,13 @@
+{
+    "profiles":{
+        "list":[
+            {
+                "guid": "{b453ae62-cccc-bbbb-2017-000000000000}",
+                "hidden": false,
+                "commandline": "cmd.exe /k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat\"",
+                "name": "MSVS 2017",
+                "startingDirectory" : "%USERPROFILE%"
+            }
+        ]
+    }
+}
