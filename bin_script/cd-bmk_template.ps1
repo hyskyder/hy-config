@@ -16,4 +16,5 @@ If ( $hash.Contains($Target) ) {
     cd "$cd_target"
 } Else {
     echo "$Target not found."
+    echo $hash
 }
